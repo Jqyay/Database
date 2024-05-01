@@ -1,12 +1,12 @@
-package assignment;
+package code;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-// import java.util.LinkedHashMap;
-// import java.util.Map;
-// import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class database {
@@ -23,13 +23,12 @@ public class database {
         }    
     }
 
-    //this section is for connection to mysql workbench
     public static Connection getConnection() throws Exception{
         try{
             String driver = "com.mysql.cj.jdbc.Driver";
             String url = "jdbc:mysql://localhost:3306/minecraft";
             String username = "root";
-            String password = "urownpassword";
+            String password = "dbqLb1234!";
             Class.forName(driver);
             Connection connection = DriverManager.getConnection(url, username, password);
             return connection;
@@ -44,12 +43,12 @@ public class database {
         try{
             Connection connection = getConnection();
             
-            String statement = "CREATE TABLE IF NOT EXISTS ItemList"
-                    + "(ItemID INT PRIMARY KEY AUTO_INCREMENT, Name VARCHAR(255), )";
+            String statement = "CREATE TABLE IF NOT EXISTS ItemWikipedia"
+                    + "(ItemID INT PRIMARY KEY AUTO_INCREMENT, Type VARCHAR(255), Name VARCHAR(255), Function VARCHAR(255))";
             PreparedStatement create = connection.prepareStatement(statement);
             
             statement = "CREATE TABLE IF NOT EXISTS ItemList"
-                    + "(ItemID INT PRIMARY KEY AUTO_INCREMENT, Username VARCHAR(255) COLLATE utf8_bin, Name VARCHAR(255), )";
+                    + "(ItemID INT PRIMARY KEY AUTO_INCREMENT, Username VARCHAR(255) COLLATE utf8_bin, Name VARCHAR(255), Type VARCHAR(255), Quantity INT)";
             PreparedStatement create2 = connection.prepareStatement(statement);
             
             statement = "CREATE TABLE IF NOT EXISTS ToolList"
@@ -66,27 +65,41 @@ public class database {
             PreparedStatement create5 = connection.prepareStatement(statement);
             
             statement = "CREATE TABLE IF NOT EXISTS PotionSatchel"
-                    + "(PotionID INT PRIMARY KEY AUTO_INCREMENT, Username VARCHAR(255) COLLATE utf8_bin, Name VARCHAR(255), Effect VARCHAR(255), NextPotion VARCHAR(255)))";
+                    + "(PotionID INT PRIMARY KEY AUTO_INCREMENT, Username VARCHAR(255) COLLATE utf8_bin, Name VARCHAR(255), Effect VARCHAR(255), NextPotion VARCHAR(255))";
             PreparedStatement create6 = connection.prepareStatement(statement);
             
-            statement  = "CREATE TABLE IF NOT EXISTS AutoFarmScheduling"
-                    + "(TaskID INT PRIMARY KEY AUTO_INCREMENT, Task VARCHAR(255), ";
-            
+            statement = "CREATE TABLE IF NOT EXISTS AutoFarmScheduling"
+                    + "(TaskID INT PRIMARY KEY AUTO_INCREMENT, Username VARCHAR(255) COLLATE utf8_bin, BlockPos INT, Task VARCHAR(255), Status VARCHAR(255), Duration VARCHAR(255), ResourceUsed VARCHAR(255), ResourceQuantity INT)";
+            PreparedStatement create7 = connection.prepareStatement(statement);
+
+            statement = "CREATE TABLE IF NOT EXISTS AutoFarmResource"
+                    + "(ResourceID INT PRIMARY KEY AUTO_INCREMENT, Username VARCHAR(255) COLLATE utf8_bin, Resource VARCHAR(255), Quantity INT";
+            PreparedStatement create8 = connection.prepareStatement(statement);
+
+            statement = "CREATE TABLE IF NOT EXISTS SecureChest"
+                    + "(ChestID INT PRIMARY KEY AUTO_INCREMENT, ChestName VARCHAR(255), SecurityLevel VARCHAR(255), Owner VARCHAR(255) COLLATE utf8_bin, ApprovedUser VARCHAR(255) COLLATE utf8_bin, PermissionType VARCHAR(255))";
+            PreparedStatement create9 = connection.prepareStatement(statement);
+
+            statement = "CREATE TABLE IF NOT EXISTS SecureChestRequest"
+                    + "(ChestID INT PRIMARY KEY AUTO_INCREMENT, ChestName VARCHAR(255), Owner VARCHAR(255) COLLATE utf8_bin, Requestor VARCHAR(255) COLLATE utf8_bin, Group VARCHAR(255) COLLATE utf8_bin, RequestStatus VARCHAR(255), Purpose VARCHAR(255))";
+            PreparedStatement create10 = connection.prepareStatement(statement);
+
             create.executeUpdate();
             create2.executeUpdate();
             create3.executeUpdate();
             create4.executeUpdate();
             create5.executeUpdate();
             create6.executeUpdate();
+            create7.executeUpdate();
+            create8.executeUpdate();
+            create9.executeUpdate();
+            create10.executeUpdate();
         }
         catch(Exception e){
             System.out.println(e);
         }
     }
 
-
-    //so far we confirm eh operation is until here only
-    
     public static boolean readDatabase(String user, String password) throws Exception{
         try {
             Connection connection = getConnection();
