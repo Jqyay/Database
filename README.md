@@ -22,6 +22,7 @@
   ![Configure liddis](https://github.com/Jqyay/Database/blob/main/Screenshot%20(839).png)
   -	need to create a schema named minecraft 
   ![Press this button](https://github.com/Jqyay/Database/blob/main/Screenshot%20(840).png)
+  - press Apply 
 ## To gain connection to mysql to netbeans/vs code
 ### in netbeans 
   -	go to Libraries columns of ur project 
