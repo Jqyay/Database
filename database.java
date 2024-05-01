@@ -1,4 +1,4 @@
-package code;
+package assignment;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,12 +23,13 @@ public class database {
         }    
     }
 
+    //this section is for connection to mysql workbench
     public static Connection getConnection() throws Exception{
         try{
             String driver = "com.mysql.cj.jdbc.Driver";
             String url = "jdbc:mysql://localhost:3306/minecraft";
             String username = "root";
-            String password = "dbqLb1234!";
+            String password = "urownpassword";
             Class.forName(driver);
             Connection connection = DriverManager.getConnection(url, username, password);
             return connection;
@@ -83,6 +84,9 @@ public class database {
         }
     }
 
+
+    //so far we confirm eh operation is until here only
+    
     public static boolean readDatabase(String user, String password) throws Exception{
         try {
             Connection connection = getConnection();
