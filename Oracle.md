@@ -40,14 +40,16 @@ create connection in the sql developer
 for creating procedure n dbms scheduler
 - sql plus
 - connect (schema name)/(password)@localhost:1521/XEPDB1 as sysdba;
-- alter session set current_schema = <username>;
-- grant create procedure to <username>;
-- grant execute on Sale to <username>;
-- grant select, insert, update, delete on sale to <username>;
-- grant execute on delete_sale to <username>;
-- grant create job to <username>;
-- grant execute on DBMS_SCHEDULER to <username>;
+- alter session set current_schema = username;
+- grant create procedure to username;
+- grant execute on Sale to username;
+- grant select, insert, update, delete on sale to username;
+- grant execute on delete_sale to username;
+- grant create job to username;
+- grant execute on DBMS_SCHEDULER to username;
 - grant create trigger to db;
+- grant execute on update_staff_age to db;
+- grant all on Product to db
 
 
 troubleshooting connection error
