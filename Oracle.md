@@ -47,6 +47,7 @@ for creating procedure n dbms scheduler
 - grant execute on delete_sale to <username>;
 - grant create job to <username>;
 - grant execute on DBMS_SCHEDULER to <username>;
+- grant create trigger to db;
 
 
 troubleshooting connection error
